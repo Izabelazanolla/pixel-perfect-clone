@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GastosRouteImport } from './routes/gastos'
+import { Route as NovaDespesaRouteImport } from './routes/nova-despesa'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GastosRoute = GastosRouteImport.update({
+  id: '/gastos',
+  path: '/gastos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovaDespesaRoute = NovaDespesaRouteImport.update({
+  id: '/nova-despesa',
+  path: '/nova-despesa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/gastos': typeof GastosRoute
+  '/nova-despesa': typeof NovaDespesaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/gastos': typeof GastosRoute
+  '/nova-despesa': typeof NovaDespesaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/gastos': typeof GastosRoute
+  '/nova-despesa': typeof NovaDespesaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/gastos' | '/nova-despesa'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/gastos' | '/nova-despesa'
+  id: '__root__' | '/' | '/gastos' | '/nova-despesa'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GastosRoute: typeof GastosRoute
+  NovaDespesaRoute: typeof NovaDespesaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gastos': {
+      id: '/gastos'
+      path: '/gastos'
+      fullPath: '/gastos'
+      preLoaderRoute: typeof GastosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nova-despesa': {
+      id: '/nova-despesa'
+      path: '/nova-despesa'
+      fullPath: '/nova-despesa'
+      preLoaderRoute: typeof NovaDespesaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GastosRoute: GastosRoute,
+  NovaDespesaRoute: NovaDespesaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
