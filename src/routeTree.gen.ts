@@ -10,12 +10,38 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AreasRouteImport } from './routes/areas'
+import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
+import { Route as FornecedoresRouteImport } from './routes/fornecedores'
 import { Route as GastosRouteImport } from './routes/gastos'
+import { Route as MaoDeObraRouteImport } from './routes/mao-de-obra'
+import { Route as MateriaisRouteImport } from './routes/materiais'
 import { Route as NovaDespesaRouteImport } from './routes/nova-despesa'
+import { Route as OrcamentoRouteImport } from './routes/orcamento'
+import { Route as PagamentosRouteImport } from './routes/pagamentos'
+import { Route as ProfissionaisRouteImport } from './routes/profissionais'
+import { Route as RelatoriosRouteImport } from './routes/relatorios'
+import { Route as MaoDeObraIndexRouteImport } from './routes/mao-de-obra.index'
+import { Route as MaoDeObraIdRouteImport } from './routes/mao-de-obra.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AreasRoute = AreasRouteImport.update({
+  id: '/areas',
+  path: '/areas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguracoesRoute = ConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FornecedoresRoute = FornecedoresRouteImport.update({
+  id: '/fornecedores',
+  path: '/fornecedores',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GastosRoute = GastosRouteImport.update({
@@ -23,40 +49,163 @@ const GastosRoute = GastosRouteImport.update({
   path: '/gastos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MaoDeObraRoute = MaoDeObraRouteImport.update({
+  id: '/mao-de-obra',
+  path: '/mao-de-obra',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MateriaisRoute = MateriaisRouteImport.update({
+  id: '/materiais',
+  path: '/materiais',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NovaDespesaRoute = NovaDespesaRouteImport.update({
   id: '/nova-despesa',
   path: '/nova-despesa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrcamentoRoute = OrcamentoRouteImport.update({
+  id: '/orcamento',
+  path: '/orcamento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentosRoute = PagamentosRouteImport.update({
+  id: '/pagamentos',
+  path: '/pagamentos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfissionaisRoute = ProfissionaisRouteImport.update({
+  id: '/profissionais',
+  path: '/profissionais',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelatoriosRoute = RelatoriosRouteImport.update({
+  id: '/relatorios',
+  path: '/relatorios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaoDeObraIndexRoute = MaoDeObraIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MaoDeObraRoute,
+} as any)
+const MaoDeObraIdRoute = MaoDeObraIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => MaoDeObraRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/areas': typeof AreasRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/fornecedores': typeof FornecedoresRoute
   '/gastos': typeof GastosRoute
+  '/mao-de-obra': typeof MaoDeObraRouteWithChildren
+  '/materiais': typeof MateriaisRoute
   '/nova-despesa': typeof NovaDespesaRoute
+  '/orcamento': typeof OrcamentoRoute
+  '/pagamentos': typeof PagamentosRoute
+  '/profissionais': typeof ProfissionaisRoute
+  '/relatorios': typeof RelatoriosRoute
+  '/mao-de-obra/$id': typeof MaoDeObraIdRoute
+  '/mao-de-obra/': typeof MaoDeObraIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/areas': typeof AreasRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/fornecedores': typeof FornecedoresRoute
   '/gastos': typeof GastosRoute
+  '/materiais': typeof MateriaisRoute
   '/nova-despesa': typeof NovaDespesaRoute
+  '/orcamento': typeof OrcamentoRoute
+  '/pagamentos': typeof PagamentosRoute
+  '/profissionais': typeof ProfissionaisRoute
+  '/relatorios': typeof RelatoriosRoute
+  '/mao-de-obra/$id': typeof MaoDeObraIdRoute
+  '/mao-de-obra': typeof MaoDeObraIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/areas': typeof AreasRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/fornecedores': typeof FornecedoresRoute
   '/gastos': typeof GastosRoute
+  '/mao-de-obra': typeof MaoDeObraRouteWithChildren
+  '/materiais': typeof MateriaisRoute
   '/nova-despesa': typeof NovaDespesaRoute
+  '/orcamento': typeof OrcamentoRoute
+  '/pagamentos': typeof PagamentosRoute
+  '/profissionais': typeof ProfissionaisRoute
+  '/relatorios': typeof RelatoriosRoute
+  '/mao-de-obra/$id': typeof MaoDeObraIdRoute
+  '/mao-de-obra/': typeof MaoDeObraIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gastos' | '/nova-despesa'
+  fullPaths:
+    | '/'
+    | '/areas'
+    | '/configuracoes'
+    | '/fornecedores'
+    | '/gastos'
+    | '/mao-de-obra'
+    | '/materiais'
+    | '/nova-despesa'
+    | '/orcamento'
+    | '/pagamentos'
+    | '/profissionais'
+    | '/relatorios'
+    | '/mao-de-obra/$id'
+    | '/mao-de-obra/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gastos' | '/nova-despesa'
-  id: '__root__' | '/' | '/gastos' | '/nova-despesa'
+  to:
+    | '/'
+    | '/areas'
+    | '/configuracoes'
+    | '/fornecedores'
+    | '/gastos'
+    | '/materiais'
+    | '/nova-despesa'
+    | '/orcamento'
+    | '/pagamentos'
+    | '/profissionais'
+    | '/relatorios'
+    | '/mao-de-obra/$id'
+    | '/mao-de-obra'
+  id:
+    | '__root__'
+    | '/'
+    | '/areas'
+    | '/configuracoes'
+    | '/fornecedores'
+    | '/gastos'
+    | '/mao-de-obra'
+    | '/materiais'
+    | '/nova-despesa'
+    | '/orcamento'
+    | '/pagamentos'
+    | '/profissionais'
+    | '/relatorios'
+    | '/mao-de-obra/$id'
+    | '/mao-de-obra/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AreasRoute: typeof AreasRoute
+  ConfiguracoesRoute: typeof ConfiguracoesRoute
+  FornecedoresRoute: typeof FornecedoresRoute
   GastosRoute: typeof GastosRoute
+  MaoDeObraRoute: typeof MaoDeObraRouteWithChildren
+  MateriaisRoute: typeof MateriaisRoute
   NovaDespesaRoute: typeof NovaDespesaRoute
+  OrcamentoRoute: typeof OrcamentoRoute
+  PagamentosRoute: typeof PagamentosRoute
+  ProfissionaisRoute: typeof ProfissionaisRoute
+  RelatoriosRoute: typeof RelatoriosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +217,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/areas': {
+      id: '/areas'
+      path: '/areas'
+      fullPath: '/areas'
+      preLoaderRoute: typeof AreasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuracoes': {
+      id: '/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/configuracoes'
+      preLoaderRoute: typeof ConfiguracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fornecedores': {
+      id: '/fornecedores'
+      path: '/fornecedores'
+      fullPath: '/fornecedores'
+      preLoaderRoute: typeof FornecedoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gastos': {
       id: '/gastos'
       path: '/gastos'
       fullPath: '/gastos'
       preLoaderRoute: typeof GastosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mao-de-obra': {
+      id: '/mao-de-obra'
+      path: '/mao-de-obra'
+      fullPath: '/mao-de-obra'
+      preLoaderRoute: typeof MaoDeObraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/materiais': {
+      id: '/materiais'
+      path: '/materiais'
+      fullPath: '/materiais'
+      preLoaderRoute: typeof MateriaisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nova-despesa': {
@@ -82,13 +266,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NovaDespesaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/orcamento': {
+      id: '/orcamento'
+      path: '/orcamento'
+      fullPath: '/orcamento'
+      preLoaderRoute: typeof OrcamentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamentos': {
+      id: '/pagamentos'
+      path: '/pagamentos'
+      fullPath: '/pagamentos'
+      preLoaderRoute: typeof PagamentosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profissionais': {
+      id: '/profissionais'
+      path: '/profissionais'
+      fullPath: '/profissionais'
+      preLoaderRoute: typeof ProfissionaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relatorios': {
+      id: '/relatorios'
+      path: '/relatorios'
+      fullPath: '/relatorios'
+      preLoaderRoute: typeof RelatoriosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mao-de-obra/': {
+      id: '/mao-de-obra/'
+      path: '/'
+      fullPath: '/mao-de-obra/'
+      preLoaderRoute: typeof MaoDeObraIndexRouteImport
+      parentRoute: typeof MaoDeObraRoute
+    }
+    '/mao-de-obra/$id': {
+      id: '/mao-de-obra/$id'
+      path: '/$id'
+      fullPath: '/mao-de-obra/$id'
+      preLoaderRoute: typeof MaoDeObraIdRouteImport
+      parentRoute: typeof MaoDeObraRoute
+    }
   }
 }
 
+interface MaoDeObraRouteChildren {
+  MaoDeObraIdRoute: typeof MaoDeObraIdRoute
+  MaoDeObraIndexRoute: typeof MaoDeObraIndexRoute
+}
+
+const MaoDeObraRouteChildren: MaoDeObraRouteChildren = {
+  MaoDeObraIdRoute: MaoDeObraIdRoute,
+  MaoDeObraIndexRoute: MaoDeObraIndexRoute,
+}
+
+const MaoDeObraRouteWithChildren = MaoDeObraRoute._addFileChildren(
+  MaoDeObraRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AreasRoute: AreasRoute,
+  ConfiguracoesRoute: ConfiguracoesRoute,
+  FornecedoresRoute: FornecedoresRoute,
   GastosRoute: GastosRoute,
+  MaoDeObraRoute: MaoDeObraRouteWithChildren,
+  MateriaisRoute: MateriaisRoute,
   NovaDespesaRoute: NovaDespesaRoute,
+  OrcamentoRoute: OrcamentoRoute,
+  PagamentosRoute: PagamentosRoute,
+  ProfissionaisRoute: ProfissionaisRoute,
+  RelatoriosRoute: RelatoriosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
