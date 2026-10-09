@@ -10,12 +10,26 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AreasRouteImport } from './routes/areas'
+import { Route as FornecedoresRouteImport } from './routes/fornecedores'
 import { Route as GastosRouteImport } from './routes/gastos'
+import { Route as MateriaisRouteImport } from './routes/materiais'
 import { Route as NovaDespesaRouteImport } from './routes/nova-despesa'
+import { Route as ProfissionaisRouteImport } from './routes/profissionais'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AreasRoute = AreasRouteImport.update({
+  id: '/areas',
+  path: '/areas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FornecedoresRoute = FornecedoresRouteImport.update({
+  id: '/fornecedores',
+  path: '/fornecedores',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GastosRoute = GastosRouteImport.update({
@@ -23,40 +37,88 @@ const GastosRoute = GastosRouteImport.update({
   path: '/gastos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MateriaisRoute = MateriaisRouteImport.update({
+  id: '/materiais',
+  path: '/materiais',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NovaDespesaRoute = NovaDespesaRouteImport.update({
   id: '/nova-despesa',
   path: '/nova-despesa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfissionaisRoute = ProfissionaisRouteImport.update({
+  id: '/profissionais',
+  path: '/profissionais',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/areas': typeof AreasRoute
+  '/fornecedores': typeof FornecedoresRoute
   '/gastos': typeof GastosRoute
+  '/materiais': typeof MateriaisRoute
   '/nova-despesa': typeof NovaDespesaRoute
+  '/profissionais': typeof ProfissionaisRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/areas': typeof AreasRoute
+  '/fornecedores': typeof FornecedoresRoute
   '/gastos': typeof GastosRoute
+  '/materiais': typeof MateriaisRoute
   '/nova-despesa': typeof NovaDespesaRoute
+  '/profissionais': typeof ProfissionaisRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/areas': typeof AreasRoute
+  '/fornecedores': typeof FornecedoresRoute
   '/gastos': typeof GastosRoute
+  '/materiais': typeof MateriaisRoute
   '/nova-despesa': typeof NovaDespesaRoute
+  '/profissionais': typeof ProfissionaisRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gastos' | '/nova-despesa'
+  fullPaths:
+    | '/'
+    | '/areas'
+    | '/fornecedores'
+    | '/gastos'
+    | '/materiais'
+    | '/nova-despesa'
+    | '/profissionais'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gastos' | '/nova-despesa'
-  id: '__root__' | '/' | '/gastos' | '/nova-despesa'
+  to:
+    | '/'
+    | '/areas'
+    | '/fornecedores'
+    | '/gastos'
+    | '/materiais'
+    | '/nova-despesa'
+    | '/profissionais'
+  id:
+    | '__root__'
+    | '/'
+    | '/areas'
+    | '/fornecedores'
+    | '/gastos'
+    | '/materiais'
+    | '/nova-despesa'
+    | '/profissionais'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AreasRoute: typeof AreasRoute
+  FornecedoresRoute: typeof FornecedoresRoute
   GastosRoute: typeof GastosRoute
+  MateriaisRoute: typeof MateriaisRoute
   NovaDespesaRoute: typeof NovaDespesaRoute
+  ProfissionaisRoute: typeof ProfissionaisRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,11 +130,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/areas': {
+      id: '/areas'
+      path: '/areas'
+      fullPath: '/areas'
+      preLoaderRoute: typeof AreasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fornecedores': {
+      id: '/fornecedores'
+      path: '/fornecedores'
+      fullPath: '/fornecedores'
+      preLoaderRoute: typeof FornecedoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gastos': {
       id: '/gastos'
       path: '/gastos'
       fullPath: '/gastos'
       preLoaderRoute: typeof GastosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/materiais': {
+      id: '/materiais'
+      path: '/materiais'
+      fullPath: '/materiais'
+      preLoaderRoute: typeof MateriaisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nova-despesa': {
@@ -82,13 +165,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NovaDespesaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profissionais': {
+      id: '/profissionais'
+      path: '/profissionais'
+      fullPath: '/profissionais'
+      preLoaderRoute: typeof ProfissionaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AreasRoute: AreasRoute,
+  FornecedoresRoute: FornecedoresRoute,
   GastosRoute: GastosRoute,
+  MateriaisRoute: MateriaisRoute,
   NovaDespesaRoute: NovaDespesaRoute,
+  ProfissionaisRoute: ProfissionaisRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
