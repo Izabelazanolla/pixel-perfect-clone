@@ -28,7 +28,7 @@ function NewExpense() {
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!f.description.trim() || total <= 0 || !f.areaId) return toast.error("Preencha descrição, valor e área.");
+    if (!f.description.trim() || total <= 0 || !f.areaId) { toast.error("Preencha descrição, valor e área."); return; }
     const installments = f.parcelado
       ? generateInstallments(total, count, f.firstDue, f.method, uid).map((i, k) => (k < Number(f.paidCount) ? { ...i, paidAt: i.due } : i))
       : [{ id: uid(), number: 1, due: f.date, amount: round2(total), method: f.method, paidAt: f.status === "Pago" ? f.date : undefined }];

@@ -87,8 +87,8 @@ function Page() {
         <form className="grid gap-3" onSubmit={(e) => {
           e.preventDefault();
           const v = Number(nv.value.replace(",", "."));
-          if (!(v > 0) || !nv.reason.trim()) return toast.error("Informe novo valor e motivo.");
-          if (v < s.paid) return toast.error(`O novo valor não pode ser menor que o já pago (${brl(s.paid)}).`);
+          if (!(v > 0) || !nv.reason.trim()) { toast.error("Informe novo valor e motivo."); return; }
+          if (v < s.paid) { toast.error(`O novo valor não pode ser menor que o já pago (${brl(s.paid)}).`); return; }
           changeContractAmount(c.id, v, nv.reason.trim()); setChg(false); setNv({ value: "", reason: "" }); toast.success("Valor atualizado");
         }}>
           <p className="text-sm text-muted-foreground">Valor atual: <b className="text-foreground">{brl(c.amount)}</b></p>

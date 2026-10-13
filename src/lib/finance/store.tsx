@@ -48,7 +48,7 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
   const store = useMemo<Store>(() => ({
     data, upsert, remove,
     setBudget: (n) => setData((d) => ({ ...d, totalBudget: n })),
-    toggleInstallment: (eid, iid) => setData((d) => ({
+    toggleInstallment: (eid, iid) => setData((d): FinanceData => ({
       ...d, expenses: d.expenses.map((e: Expense) => e.id !== eid ? e : {
         ...e, installments: e.installments.map((i) => i.id !== iid ? i : { ...i, paidAt: i.paidAt ? undefined : todayISO() }),
       }),

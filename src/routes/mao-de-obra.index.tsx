@@ -27,7 +27,7 @@ function Page() {
   function create(e: React.FormEvent) {
     e.preventDefault();
     const amount = Number(f.amount.replace(",", ".")) || 0;
-    if (!f.professionalId || !f.service || amount <= 0) return toast.error("Preencha profissional, serviço e valor.");
+    if (!f.professionalId || !f.service || amount <= 0) { toast.error("Preencha profissional, serviço e valor."); return; }
     upsert("contracts", { id: uid(), ...f, amount: round2(amount), payments: [], changes: [] });
     setNewOpen(false); toast.success("Contratação criada");
   }

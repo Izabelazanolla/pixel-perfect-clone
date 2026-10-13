@@ -10,7 +10,7 @@ export function seedData(): FinanceData {
   const parcelado = generateInstallments(4800, 6, "2026-08-15", "Cartão de crédito", sid);
   parcelado.slice(0, 2).forEach((i) => (i.paidAt = i.due));
   const pisos = generateInstallments(3600, 4, "2026-09-05", "Cartão de crédito", sid);
-  pisos[0].paidAt = "2026-09-05";
+  pisos[0]!.paidAt = "2026-09-05";
   return {
     totalBudget: 100000,
     areas: [

@@ -15,7 +15,7 @@ export function generateInstallments(total: number, count: number, firstDue: str
   const n = Math.max(1, Math.floor(count));
   const base = Math.floor((total / n) * 100) / 100;
   const out: Installment[] = [];
-  const [y, m, d] = firstDue.split("-").map(Number);
+  const [y = 2026, m = 1, d = 1] = firstDue.split("-").map(Number);
   for (let k = 0; k < n; k++) {
     const dt = new Date(Date.UTC(y, m - 1 + k, 1));
     const lastDay = new Date(Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth() + 1, 0)).getUTCDate();
@@ -153,6 +153,6 @@ const brlFmt = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BR
 export const brl = (n: number) => brlFmt.format(n);
 export const fmtDate = (iso?: string) => (iso ? iso.slice(0, 10).split("-").reverse().join("/") : "—");
 export const fmtMonth = (ym: string) => {
-  const [y, m] = ym.split("-");
+  const [y = "", m = "1"] = ym.split("-");
   return `${["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"][Number(m) - 1]}/${y.slice(2)}`;
 };

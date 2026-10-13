@@ -13,7 +13,7 @@ export const Route = createFileRoute("/gastos")({
   component: Gastos,
 });
 
-interface Row { id: string; kind: "despesa" | "mao"; date: string; description: string; areaId: string; category: string; who: string; whoId?: string; method: string; total: number; paid: number; status: string }
+interface Row { id: string; kind: "despesa" | "mao"; date: string; description: string; areaId: string; category: string; who: string; whoId?: string | undefined; method: string; total: number; paid: number; status: string }
 
 function Gastos() {
   const { data, remove, toggleInstallment } = useFinance();
