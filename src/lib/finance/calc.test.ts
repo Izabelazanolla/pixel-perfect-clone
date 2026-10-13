@@ -30,7 +30,7 @@ describe("compra parcelada", () => {
     let i = 0;
     const p = generateInstallments(4800, 6, "2026-01-31", "Pix", () => String(i++));
     expect(p.map((x) => x.amount)).toEqual([800, 800, 800, 800, 800, 800]);
-    expect(p[1].due).toBe("2026-02-28");
+    expect(p[1]!.due).toBe("2026-02-28");
   });
   it("parcelas somam exatamente o total", () => {
     const p = generateInstallments(1000, 3, "2026-01-10", "Pix", () => "x");
@@ -41,7 +41,7 @@ describe("compra parcelada", () => {
   });
   it("calcula pagas e restantes", () => {
     const inst = generateInstallments(4800, 6, "2026-01-10", "Pix", () => "x");
-    inst[0].paidAt = "2026-01-10"; inst[1].paidAt = "2026-02-10";
+    inst[0]!.paidAt = "2026-01-10"; inst[1]!.paidAt = "2026-02-10";
     const s = expenseSummary({ id: "e", description: "", total: 4800, date: "", areaId: "", category: "Material", method: "Pix", notes: "", installments: inst });
     expect([s.paid, s.pending, s.paidCount, s.remainingCount, s.status]).toEqual([1600, 3200, 2, 4, "Parcialmente pago"]);
   });

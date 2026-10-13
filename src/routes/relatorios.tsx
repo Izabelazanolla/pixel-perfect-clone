@@ -29,7 +29,7 @@ function Page() {
       <PageHeader title="Relatórios" subtitle="Respostas rápidas sobre o dinheiro da reforma." />
       <Tabs defaultValue="geral">
         <TabsList className="mb-4 flex h-auto flex-wrap justify-start">
-          {[["geral", "Geral"], ["area", "Por área"], ["cat", "Por categoria"], ["prof", "Por profissional"], ["forn", "Por fornecedor"], ["mes", "Mensal"]].map(([v, l]) => <TabsTrigger key={v} value={v}>{l}</TabsTrigger>)}
+          {([["geral", "Geral"], ["area", "Por área"], ["cat", "Por categoria"], ["prof", "Por profissional"], ["forn", "Por fornecedor"], ["mes", "Mensal"]] as const).map(([v, l]) => <TabsTrigger key={v} value={v}>{l}</TabsTrigger>)}
         </TabsList>
         <TabsContent value="geral"><Section title="Resumo financeiro">
           <Table head={["Indicador", "Valor"]} rows={[["Orçamento total", brl(t.budget)], ["Total gasto (comprometido)", brl(t.spent)], ["Total pago", brl(t.paid)], ["Ainda a pagar", brl(t.pending)], ["Disponível do orçamento", brl(t.available)], ["Mão de obra contratada", brl(t.contracted)], ["Mão de obra paga", brl(t.laborPaid)]]} />

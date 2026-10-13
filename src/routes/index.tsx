@@ -79,7 +79,7 @@ function Dashboard() {
       <div className="mt-8 grid gap-4 lg:grid-cols-2">
         <Section title="Gastos por área">
           <div className="h-60">
-            <ResponsiveContainer>
+            <ResponsiveContainer width="100%" height="100%">
               <BarChart data={areas}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
                 <XAxis dataKey="name" tick={{ fontSize: 12 }} stroke="var(--muted-foreground)" />
@@ -93,7 +93,7 @@ function Dashboard() {
         </Section>
         <Section title="Gastos por categoria">
           <div className="flex h-60 items-center gap-4">
-            <ResponsiveContainer width="55%">
+            <ResponsiveContainer width="55%" height="100%">
               <PieChart>
                 <Pie data={cats} dataKey="value" nameKey="name" innerRadius={50} outerRadius={90} paddingAngle={2}>
                   {cats.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
@@ -113,7 +113,7 @@ function Dashboard() {
         </Section>
         <Section title="Pagamentos por mês">
           <div className="h-60">
-            <ResponsiveContainer>
+            <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={months}>
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
                 <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke="var(--muted-foreground)" />

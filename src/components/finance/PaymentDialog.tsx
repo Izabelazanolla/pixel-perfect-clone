@@ -18,7 +18,7 @@ export function PaymentDialog({ contractId, open, onOpenChange }: { contractId: 
     e.preventDefault();
     if (!c) return;
     const res = addLaborPayment(c.id, { date: f.date, amount, method: f.method, notes: f.notes, receipt: f.receipt || undefined });
-    if (res) return toast.error(res);
+    if (res) { toast.error(res); return; }
     toast.success(`Pagamento registrado. Restante: ${brl(s!.remaining - amount)}`);
     setF({ date: todayISO(), amount: "", method: "Pix", notes: "", receipt: "" });
     onOpenChange(false);
