@@ -22,7 +22,7 @@ export interface Expense {
   receipt?: string | undefined; installments: Installment[];
 }
 
-export interface LaborPayment { id: string; date: string; amount: number; method: PaymentMethod; notes: string; receipt?: string }
+export interface LaborPayment { id: string; date: string; amount: number; method: PaymentMethod; notes: string; receipt?: string | undefined }
 export interface AmountChange { id: string; date: string; previous: number; next: number; reason: string }
 export interface Contract {
   id: string; professionalId: string; service: string; areaId: string; date: string;
